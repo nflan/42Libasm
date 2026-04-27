@@ -1,0 +1,23 @@
+section .text
+global _ft_strdup
+extern _malloc
+extern _ft_strlen
+extern _ft_strcpy
+
+_ft_strdup:
+	push	rdi
+	call	_ft_strlen
+	inc		rax
+	mov		rdi, rax
+	call	_malloc
+	test	rax, rax
+	je		.malloc_failed
+	mov		rdi, rax
+	mov		rsi, [rsp]
+	call	_ft_strcpy
+	add		rsp, 8
+	ret
+
+.malloc_failed:
+	add		rsp, 8
+	ret
