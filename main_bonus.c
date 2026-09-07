@@ -51,13 +51,13 @@ int	main(void)
 {
 	t_list	*lst;
 
-	printf("ft_atoi_base(\"---1010\", \"01\") = %d\n", ft_atoi_base("---1010", "01"));
+	printf("ft_atoi_base(\"---1010\", \"0123456789\") = %d\n", ft_atoi_base("---1010", "0123456789"));
 	printf("ft_atoi_base(\"7f\", \"0123456789abcdef\") = %d\n",
 		ft_atoi_base("7f", "0123456789abcdef"));
 	lst = new_node("world");
-	ft_list_push_front(&lst, strdup("hello"));
-	ft_list_push_front(&lst, strdup("42"));
-	ft_list_push_front(&lst, strdup("hello"));
+	ft_list_push_front(&lst, ft_strdup("hello"));
+	ft_list_push_front(&lst, ft_strdup("42"));
+	ft_list_push_front(&lst, ft_strdup("hello"));
 	printf("size = %d\n", ft_list_size(lst));
 	print_list(lst);
 	ft_list_sort(&lst, (int (*)())ft_strcmp);
