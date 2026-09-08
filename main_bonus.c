@@ -50,7 +50,9 @@ static void	free_all(t_list *lst)
 int	main(void)
 {
 	t_list	*lst;
+	int		(*cmp)();
 
+	cmp = (int (*)())(void *)ft_strcmp;
 	printf("ft_atoi_base(\"---1010\", \"0123456789\") = %d\n", ft_atoi_base("---1010", "0123456789"));
 	printf("ft_atoi_base(\"7f\", \"0123456789abcdef\") = %d\n",
 		ft_atoi_base("7f", "0123456789abcdef"));
@@ -60,9 +62,9 @@ int	main(void)
 	ft_list_push_front(&lst, ft_strdup("hello"));
 	printf("size = %d\n", ft_list_size(lst));
 	print_list(lst);
-	ft_list_sort(&lst, (int (*)())ft_strcmp);
+	ft_list_sort(&lst, cmp);
 	print_list(lst);
-	ft_list_remove_if(&lst, "hello", (int (*)())ft_strcmp, free);
+	ft_list_remove_if(&lst, "hello", cmp, free);
 	print_list(lst);
 	free_all(lst);
 	return (0);
