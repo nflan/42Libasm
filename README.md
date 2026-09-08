@@ -172,5 +172,5 @@ Start here:
   - strcmp: [https://man7.org/linux/man-pages/man3/strcmp.3.html](https://man7.org/linux/man-pages/man3/strcmp.3.html)
   - write: [https://man7.org/linux/man-pages/man2/write.2.html](https://man7.org/linux/man-pages/man2/write.2.html)
   - read: [https://man7.org/linux/man-pages/man2/read.2.html](https://man7.org/linux/man-pages/man2/read.2.html)
-- macOS syscall numbers / conventions (for libasm on mac): Apple man pages + your local `man 2 read`, `man 2 write`
+- Linux syscalls: `man 2 read`, `man 2 write`, and `__errno_location`
 

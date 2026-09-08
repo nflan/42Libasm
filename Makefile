@@ -1,17 +1,8 @@
 NAME		= libasm.a
 CC			= cc
 NASM		= nasm
-
-UNAME_S		:= $(shell uname -s)
-ifeq ($(UNAME_S),Darwin)
-	NASMFLAGS	= -f macho64
-	CFLAGS		= -Wall -Wextra -Werror -arch x86_64
-	LDFLAGS		= -arch x86_64
-else
-	NASMFLAGS	= -f elf64
-	CFLAGS		= -Wall -Wextra -Werror
-	LDFLAGS		=
-endif
+NASMFLAGS	= -f elf64
+CFLAGS		= -Wall -Wextra -Werror
 
 ASM_SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 ASM_OBJS	= $(ASM_SRCS:.s=.o)
@@ -29,16 +20,16 @@ all: $(NAME)
 $(NAME): $(ASM_OBJS)
 	ar rcs $(NAME) $(ASM_OBJS)
 
-%.o: %.s platform.inc
+%.o: %.s
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 $(TEST_NAME): $(NAME) $(TEST_SRC) libasm.h
-	$(CC) $(CFLAGS) $(TEST_SRC) $(NAME) $(LDFLAGS) -o $(TEST_NAME)
+	$(CC) $(CFLAGS) $(TEST_SRC) $(NAME) -o $(TEST_NAME)
 
 test: $(TEST_NAME)
 
 $(TEST_BONUS_NAME): bonus $(TEST_BONUS_SRC) libasm_bonus.h
-	$(CC) $(CFLAGS) $(TEST_BONUS_SRC) $(NAME) $(LDFLAGS) -o $(TEST_BONUS_NAME)
+	$(CC) $(CFLAGS) $(TEST_BONUS_SRC) $(NAME) -o $(TEST_BONUS_NAME)
 
 test_bonus: $(TEST_BONUS_NAME)
 

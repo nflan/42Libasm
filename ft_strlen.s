@@ -1,9 +1,7 @@
-%include "platform.inc"
-
 section .text
-global NAME(ft_strlen)
+global ft_strlen
 
-NAME(ft_strlen):
+ft_strlen:
 	xor		rax, rax
 
 .loop:

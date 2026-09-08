@@ -1,27 +1,18 @@
-%include "platform.inc"
-
 section .text
-global NAME(ft_write)
-extern ERRNO_FN
+global ft_write
+extern __errno_location
 
-NAME(ft_write):
-	mov		rax, SYS_WRITE
+ft_write:
+	mov		rax, 1
 	syscall
-%ifidn __OUTPUT_FORMAT__, elf64
 	cmp		rax, 0
 	jl		.error
 	ret
 
 .error:
 	neg		rax
-%else
-	jc		.error
-	ret
-
-.error:
-%endif
 	push	rax
-	call	ERRNO_FN
+	call	__errno_location
 	pop		rdx
 	mov		[rax], edx
 	mov		rax, -1

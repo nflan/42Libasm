@@ -1,9 +1,7 @@
-%include "platform.inc"
-
 section .text
-global NAME(ft_list_sort)
+global ft_list_sort
 
-NAME(ft_list_sort):
+ft_list_sort:
 	test	rdi, rdi
 	jz		.done
 	test	rsi, rsi

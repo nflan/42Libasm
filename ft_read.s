@@ -1,27 +1,18 @@
-%include "platform.inc"
-
 section .text
-global NAME(ft_read)
-extern ERRNO_FN
+global ft_read
+extern __errno_location
 
-NAME(ft_read):
-	mov		rax, SYS_READ
+ft_read:
+	mov		rax, 0
 	syscall
-%ifidn __OUTPUT_FORMAT__, elf64
 	cmp		rax, 0
 	jl		.error
 	ret
 
 .error:
 	neg		rax
-%else
-	jc		.error
-	ret
-
-.error:
-%endif
 	push	rax
-	call	ERRNO_FN
+	call	__errno_location
 	pop		rdx
 	mov		[rax], edx
 	mov		rax, -1

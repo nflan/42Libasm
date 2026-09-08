@@ -1,10 +1,8 @@
-%include "platform.inc"
-
 section .text
-global NAME(ft_list_push_front)
-extern NAME(malloc)
+global ft_list_push_front
+extern malloc
 
-NAME(ft_list_push_front):
+ft_list_push_front:
 	test	rdi, rdi
 	jz		.ret
 
@@ -12,7 +10,7 @@ NAME(ft_list_push_front):
 	mov		[rsp], rdi
 	mov		[rsp + 8], rsi
 	mov		rdi, 16
-	call	NAME(malloc)
+	call	malloc
 	test	rax, rax
 	jz		.cleanup
 

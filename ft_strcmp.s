@@ -1,9 +1,7 @@
-%include "platform.inc"
-
 section .text
-global NAME(ft_strcmp)
+global ft_strcmp
 
-NAME(ft_strcmp):
+ft_strcmp:
 	xor		rcx, rcx
 
 .loop:
