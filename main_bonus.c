@@ -53,9 +53,10 @@ int	main(void)
 	int		(*cmp)();
 
 	cmp = (int (*)())(void *)ft_strcmp;
-	printf("ft_atoi_base(\"---1010\", \"0123456789\") = %d\n", ft_atoi_base("---1010", "0123456789"));
+	printf("ft_atoi_base(\"---1010\", \"01\") = %d\n", ft_atoi_base("---1010", "01"));
 	printf("ft_atoi_base(\"7f\", \"0123456789abcdef\") = %d\n",
 		ft_atoi_base("7f", "0123456789abcdef"));
+	printf("ft_atoi_base(\"  --314411143\", \"314\") = %d\n", ft_atoi_base("  --411143", "314"));
 	lst = new_node("world");
 	ft_list_push_front(&lst, ft_strdup("hello"));
 	ft_list_push_front(&lst, ft_strdup("42"));

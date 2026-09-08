@@ -3,6 +3,7 @@ CC			= cc
 NASM		= nasm
 NASMFLAGS	= -f elf64
 CFLAGS		= -Wall -Wextra -Werror
+LIB			= -L -lasm
 
 ASM_SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 ASM_OBJS	= $(ASM_SRCS:.s=.o)
@@ -24,12 +25,12 @@ $(NAME): $(ASM_OBJS)
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 $(TEST_NAME): $(NAME) $(TEST_SRC) libasm.h
-	$(CC) $(CFLAGS) $(TEST_SRC) $(NAME) -o $(TEST_NAME)
+	$(CC) $(CFLAGS) $(TEST_SRC) $(LIB) $(NAME) -o $(TEST_NAME)
 
 test: $(TEST_NAME)
 
 $(TEST_BONUS_NAME): bonus $(TEST_BONUS_SRC) libasm_bonus.h
-	$(CC) $(CFLAGS) $(TEST_BONUS_SRC) $(NAME) -o $(TEST_BONUS_NAME)
+	$(CC) $(CFLAGS) $(TEST_BONUS_SRC) $(LIB) $(NAME) $(LDFLAGS) -o $(TEST_BONUS_NAME)
 
 test_bonus: $(TEST_BONUS_NAME)
 
