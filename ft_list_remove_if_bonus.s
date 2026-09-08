@@ -1,8 +1,10 @@
-section .text
-global _ft_list_remove_if
-extern _free
+%include "platform.inc"
 
-_ft_list_remove_if:
+section .text
+global NAME(ft_list_remove_if)
+extern NAME(free)
+
+NAME(ft_list_remove_if):
 	test	rdi, rdi
 	jz		.done
 	test	rdx, rdx
@@ -41,7 +43,7 @@ _ft_list_remove_if:
 	mov		rax, [r9 + 8]
 	mov		[r15], rax
 	mov		rdi, r9
-	call	_free
+	call	NAME(free)
 	jmp		.loop
 
 .keep:

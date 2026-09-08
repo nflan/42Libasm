@@ -1,20 +1,22 @@
-section .text
-global _ft_strdup
-extern _malloc
-extern _ft_strlen
-extern _ft_strcpy
+%include "platform.inc"
 
-_ft_strdup:
+section .text
+global NAME(ft_strdup)
+extern NAME(malloc)
+extern NAME(ft_strlen)
+extern NAME(ft_strcpy)
+
+NAME(ft_strdup):
 	push	rdi
-	call	_ft_strlen
+	call	NAME(ft_strlen)
 	inc		rax
 	mov		rdi, rax
-	call	_malloc
+	call	NAME(malloc)
 	test	rax, rax
 	je		.malloc_failed
 	mov		rdi, rax
 	mov		rsi, [rsp]
-	call	_ft_strcpy
+	call	NAME(ft_strcpy)
 	add		rsp, 8
 	ret
 

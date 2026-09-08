@@ -1,7 +1,9 @@
-section .text
-global _ft_strcpy
+%include "platform.inc"
 
-_ft_strcpy:
+section .text
+global NAME(ft_strcpy)
+
+NAME(ft_strcpy):
 	mov		rax, rdi
 
 .loop:

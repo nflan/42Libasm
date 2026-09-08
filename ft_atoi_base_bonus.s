@@ -1,7 +1,9 @@
-section .text
-global _ft_atoi_base
+%include "platform.inc"
 
-_ft_atoi_base:
+section .text
+global NAME(ft_atoi_base)
+
+NAME(ft_atoi_base):
 	test	rdi, rdi
 	jz		.invalid
 	test	rsi, rsi

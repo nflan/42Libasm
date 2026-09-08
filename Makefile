@@ -1,10 +1,17 @@
 NAME		= libasm.a
 CC			= cc
 NASM		= nasm
-NASMFLAGS	= -f macho64
-ARCH		= x86_64
-CFLAGS		= -Wall -Wextra -Werror -arch $(ARCH)
-LDFLAGS		= -arch $(ARCH)
+
+UNAME_S		:= $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	NASMFLAGS	= -f macho64
+	CFLAGS		= -Wall -Wextra -Werror -arch x86_64
+	LDFLAGS		= -arch x86_64
+else
+	NASMFLAGS	= -f elf64
+	CFLAGS		= -Wall -Wextra -Werror
+	LDFLAGS		=
+endif
 
 ASM_SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 ASM_OBJS	= $(ASM_SRCS:.s=.o)
@@ -22,7 +29,7 @@ all: $(NAME)
 $(NAME): $(ASM_OBJS)
 	ar rcs $(NAME) $(ASM_OBJS)
 
-%.o: %.s
+%.o: %.s platform.inc
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 $(TEST_NAME): $(NAME) $(TEST_SRC) libasm.h

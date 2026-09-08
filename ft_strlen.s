@@ -1,7 +1,9 @@
-section .text
-global _ft_strlen
+%include "platform.inc"
 
-_ft_strlen:
+section .text
+global NAME(ft_strlen)
+
+NAME(ft_strlen):
 	xor		rax, rax
 
 .loop:

@@ -1,7 +1,9 @@
-section .text
-global _ft_list_size
+%include "platform.inc"
 
-_ft_list_size:
+section .text
+global NAME(ft_list_size)
+
+NAME(ft_list_size):
 	xor		eax, eax
 
 .loop:

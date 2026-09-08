@@ -1,16 +1,27 @@
-section .text
-global _ft_write
-extern ___error
+%include "platform.inc"
 
-_ft_write:
-	mov		rax, 0x2000004
+section .text
+global NAME(ft_write)
+extern ERRNO_FN
+
+NAME(ft_write):
+	mov		rax, SYS_WRITE
 	syscall
+%ifidn __OUTPUT_FORMAT__, elf64
+	cmp		rax, 0
+	jl		.error
+	ret
+
+.error:
+	neg		rax
+%else
 	jc		.error
 	ret
 
 .error:
+%endif
 	push	rax
-	call	___error
+	call	ERRNO_FN
 	pop		rdx
 	mov		[rax], edx
 	mov		rax, -1
